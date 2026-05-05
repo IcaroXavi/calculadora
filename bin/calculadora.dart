@@ -3,10 +3,13 @@ import 'dart:io';
 void main() {
   List<String> operacoes = <String>["+", "-", "*", "/"];
   String operacao = "";
+  double? numeroUm;
+  double? numeroDois;
+  double resultado = 0;
 
   void getNumeroUm() {
     print("Digite o primeiro valor");
-    double? numeroUm = double.tryParse(stdin.readLineSync()!);
+    numeroUm = double.tryParse(stdin.readLineSync() ?? "");
 
     if (numeroUm == null) {
       print("Valor inválido. Digite um número.");
@@ -26,7 +29,7 @@ void main() {
 
   void getNumeroDois() {
     print("Digite o segundo valor");
-    double? numeroDois = double.tryParse(stdin.readLineSync()!);
+    numeroDois = double.tryParse(stdin.readLineSync() ?? "");
 
     if (numeroDois == null) {
       print("Valor inválido. Digite um número.");
@@ -34,9 +37,26 @@ void main() {
     }
   }
 
-  void 
+  void calcular() {
+    getNumeroUm();
+    getOperador();
+    getNumeroDois();
+    switch (operacao) {
+      case "+":
+        resultado = numeroUm! + numeroDois!;
+        break;
+      case "-":
+        resultado = numeroUm! - numeroDois!;
+        break;
+      case "*":
+        resultado = numeroUm! * numeroDois!;
+        break;
+      case "/":
+        resultado = numeroUm! / numeroDois!;
+        break;
+    }
+    print("Resultado: $resultado");
+  }
 
-  getNumeroUm();
-  getOperador();
-  getNumeroDois();
+  calcular();
 }
